@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html>
+<title>W3.CSS Template</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto'>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+html,body,h1,h2,h3,h4,h5,h6 {font-family: "Roboto", sans-serif}
+a{text-decoration: none
+}
+</style>
+<body class="w3-light-grey">
+
+<!-- Page Container -->
+<div class="w3-content w3-margin-top" style="max-width:1400px;">
+
+  <!-- The Grid -->
+  <div class="w3-row-padding">
+  
+    <!-- Left Column -->
+    <div class="w3-quarter">
+    
+      <div class="w3-white w3-text-grey w3-card-4">
+        <div class="w3-display-container">
+          <img src="https://cdn.cultofmac.com/wp-content/uploads/2013/10/Google-Apple-640x266.jpg" style="width:100%" alt="Google">
+          <div class="w3-display-bottomleft w3-container w3-text-black">
+            
+          </div>
+        </div>
+        <div class="w3-container">
+          <b><a name="content">Table of Content</a></b>
+          <ol>
+            <li><a Href="#Introduction">Introduction</a>
+              <ol>
+                <li><a href="#1.1">Web search engines - scaling up: 1994-2000</a></li>
+                <li><a href="#1.2">Google: scaling with the Web</a></li>
+              </ol>
+            </li>
+            <li><a Href="#System Feature">System Features</a>
+              <ol>
+                <li><a href="#2.1">PageRank: bringing order to the Web</a>
+                    <ol>
+                      <li><a href="#2.1.1">Description of PageRank calculation</a></li>
+                      <li><a href="#2.1.2"> lntuitive justification</a></li>
+                    </ol>
+                </li>
+                <li><a href="#2.2">Anchor- test</a></li>
+                <li><a href="#2.3">Other Features</a></li>
+              </ol>
+            </li>
+            <li><a Href="#Related Work">Realted Work</a>
+                <ol>
+                  <li><a href="#3.1">facts Retrieval(Information retrieval)</a></li>
+                  <li><a href="#3.2">differences between the internet and properly managed Collections</a></li>
+                </ol>
+            </li>
+            <li><a Href="#System Anatomy">System Anatomy</a>
+                <ol>
+                  <li><a Href="#4.1"> google architecture overview</a></li>
+                  <li><a Href="#4.2">Major Data Structure</a>
+                      <ol>
+                        <li><a Href="#4.2.1">BigFiles</a></li>
+                        <li><a Href="#4.2.2">Repository</a></li>
+                        <li><a Href="#4.2.3">Document Index/report index</a></li>
+                        <li><a Href="#4.2.4"> Lexicon</a></li>
+                        <li><a Href="#4.2.5">Hit Lists</a></li>
+                        <li><a Href="#4.2.6">forward Index</a></li>
+                        <li><a Href="#4.2.7">Inverted Index</a></li>
+                      </ol>
+                  </li>
+                  <li><a Href="#4.3">Crawling the Web</a></li>
+                  <li><a Href="#4.4">Indexing the web</a></li>
+                  <li><a Href="#4.5">searching</a>
+                      <ol>
+                        <li><a Href="#4.5.1">The Ranking System</a></li>
+                        <li><a Href="#4.5.2">remarks/feedbacks</a></li>
+                      </ol>
+                  </li>
+                </ol>
+            </li>
+            <li><a Href="#Result and Performance">Result and Performance</a>
+                <ol>
+                  <li><a Href="#5.1">Storage requirements</a></li>
+                  <li><a Href="#5.2">System performance</a></li>
+                  <li><a Href="#5.3"> Search performance</a></li>
+                </ol>
+            </li>
+            <li><a Href="#Conclusion">Conclusion</a>
+                <ol>
+                  <li><a Href="#6.1">Furute work</a></li>
+                  <li><a Href="#6.2">High Quality Search</a></li>
+                  <li><a Href="#6.3">Scalable Architecture</a></li>
+                  <li><a Href="#6.4"> A research tools</a></li>
+                </ol>
+            </li>
+            <li><a Href="#Acknowledgemet">Acknowledgement</a></li>
+            <li><a Href="#Reference">Reference</a></li>
+            <li><a Href="#Vitae">Vitae</a></li>
+
+          </ol>
+        </div>
+      </div><br>
+
+    <!-- End Left Column -->
+    </div>
+
+    <!-- Right Column -->
+    <div class="w3-threequarter">
+    
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <h4 class="w3-text-grey w3-padding-16"></h4>
+
+
+        <h2 class="w3-text-grey w3-padding-16"><i class="fa fa-globe fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i> Abstract</h2>
+        <p>in this paper, we gift Google, a prototype of a big-scale seek engine which makes heavy use of the structure found in hypertext. Google is designed to crawl and index the net efficiently and convey a great deal more pleasurable search effects than existing structures. The prototype with a full text and link database of as a minimum 24 million pages is to be had at<a href="http://oogle.stanford.edu/">http://oogle.stanford.edu/</a>To engineer a seek engine is a hard challenge. search engines like google index tens to loads of tens of millions of web pages concerning a similar quantity of awesome terms. They solution tens of hundreds of thousands of queries every day. no matter the importance of massive-scale engines like google at the net, very little academic research has been accomplished on them. furthermore, due to fast develop in generation and net proliferation, growing a web search engine today is very one of a kind from three years ago. This paper gives an in-depth description of our massive-scale net search engine -- the first such special public description we realize of to date. aside from the issues of scaling conventional seek techniques to statistics of this significance, there are new technical challenges involved with the usage of the additional statistics found in hypertext to produce higher seek effects. This paper addresses this query of the way to construct a sensible big-scale machine that could make the most the extra information present in hypertext. also we examine the trouble of a way to efficaciously address out of control hypertext collections where every body can post some thing they need.
+</p>
+      </div>
+      <!-- Introduction-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom">
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="Introduction">1. Introduction</a> </h3>
+          
+          <p>The web creates new demanding situations for statistics retrieval. the quantity of facts at the internet is developing unexpectedly, in addition to the number of recent customers green in the artwork of web research. humans are possibly to surf the web using its hyperlink graph, regularly beginning with high best human maintained indices together with Yahoo! 3 or with serps.Human maintained lists cowl famous topics correctly but are subjective,high priced to construct and preserve, gradual to improve, and can not cover all esoteric topics.computerized search engines like google that rely upon keyword matching commonly go back too many low exceptional matches.To make subjects worse, some advertisers attempt to benefit humans’s attention by means of taking measures supposed to misinform automatic serps.large-scale seek engine which addresses most of the troubles of existing systems have been built which makes mainly heavy use of the extra shape present in hypertext to provide a lot better excellent seek effects.</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="1.1">1.1. Web search engines - scaling up: 1994-2000</a></b></h4>
+          
+          <p>search engine technology has had to scale dramatically to preserve up with the boom of the internet. In 1994, one of the first net engines like google, the world extensive internet computer virus (WWWW) had an index of a hundred and ten,000 internet pages and internet available documents. As of November. 1997, the top search engines claim to index from 2 million (WebCrawler) to 100 million web documents (from seek Engine Watch4). it is foreseeable that by using the 12 months 2000, a complete index of the web will comprise over a thousand million documents. at the identical time, the range of queries search engines like google manage has grown distinctly too. In March and April 1994, the world huge net worm obtained an average of approximately 1500 queries in keeping with day. In November 1997, Altavista claimed it handled more or less 20 million queries in line with day. With the increasing variety of users at the internet, and automatic structures which query engines like google, it is likely that top search engines like google and yahoo will handle hundreds of hundreds of thousands of queries according to day via the year 2000. The intention of our machine is to deal with the various problems, both in exceptional and scalability, brought by using scaling search engine technology to such tremendous numbers. Google now processes over forty,000 search queries each 2nd on common (visualize them right here), which interprets to over 3.five billion searches in step with day and 1.2 trillion searches according to 12 months worldwide.</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="1.2">1.2. Google: scaling with the Web </a></b></h4>
+         <!-- <h6 class="w3-text-teal"><i class="fa fa-calendar fa-fw w3-margin-right"></i>Jun 2010 - Mar 2012</h6>-->
+          <p>growing a seek engine which scales even to nowadays’s internet offers many challenges. speedy crawling generation is wanted to acquire the web files and hold them updated. storage space need to be used efficiently to save indices and, optionally, the files themselves. The indexing machine ought to procedure masses of gigabytes of data efficaciously. Queries ought to be dealt with quick, at a fee of masses to thousands in keeping with 2d.this undertaking are becomming increasingly more difficult because the net grows. but, hardware overall performance and value have advanced dramatically to partly offset the problem. There are, but, several superb exceptions to this development which include disk searching for time and running machine robustness. In designing Google, we have considered each the rate of boom of the web and technological modifications. Google is designed to scale nicely to extraordinarily large data sets. It makes green use of storage area to store the index. Its statistics systems are optimized for fast and green get entry to. similarly, we expect that the fee to index and store text or HTML will in the end decline relative to the quantity that will be available. this will bring about favorable scaling residences for centralized systems like Google.Our predominant purpose is to improve the first-rate of internet search engines. In 1994, some humans believed that a complete search index might make it viable to find something easily. consistent with first-rate of the internet 1994 - Navigators5, “The pleasant navigation carrier must make it smooth to locate nearly some thing on the net (as soon as all the records is entered).” however, the web of 1997 is pretty different. all and sundry who has used a search engine these days, can quite simply testify that the completeness of the index isn't the simplest issue within the first-class of seek consequences. “Junk results” frequently wash out any outcomes that a consumer is interested by. In fact, as of November 1997. best one of the top four business search engines like google and yahoo reveals itself (returns its very own search page in response to its call in the top ten outcomes). one of the major causes of this trouble is that the wide variety of files inside the indices has been increasing by using many orders of value, but the person’s potential to have a look at documents has not. human beings are nevertheless handiest willing to take a look at the first few tens of results. due to this, as the collection size grows, we want tools which have very excessive precision (number of relevant documents again, say within the pinnacle tens of consequences). indeed, we need our notion of “applicable” to best consist of the very exceptional documents on the grounds that there may be tens of hundreds of barely relevant files. This very high precision is essential even on the expense of take into account (the entire range of applicable documents the device is able to go back). there may be quite a piece of latest optimism that using extra hypertextual records can help enhance search and other programs [4.9,12,3]. especially, link shape 171 and link textual content offer a variety of facts for making relevance judgments and high-quality filtering. Google uses each link structure and anchor textual content(see Sections 2.1 and 2.2).</p>
+          <a href="#content">>> TOP</a><br>
+          <br>
+        </div>
+      </div>
+      <!-- system feature-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        
+        <div class="w3-container">
+        <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="System Feature">2. System features </a></h3>
+      
+          <p>The Google search engine has two important features that help it produce high precision results. First, it makes use of the link structure of the Web to calculate a quality ranking for each Web page. This ranking is called PageRank. Second, Google utilizes links to improve search results. </p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="2.1">2.1. PageRank: bringing order to the Web</a></b></h4>
+          <p>The citation (link) graph of the Web is an important resource that has largely gone unused in existing Web search engines. We have created maps containing as many as 518 million of these hyperlinks, a significant sample of the total. These maps allow rapid calculation of a Web page’s “PageRank”, an objective measure of its citation importance that corresponds well with people’s subjective idea of importance. Because of this correspondence, PageRank is an excellent way to prioritize the results of Web keyword searches. For most popular subjects, a simple text matching search that is restricted to Web page titles performs admirably when PageRank prioritizes the results. For the type of full text searches in the main Google system, PageRank also helps a great deal. (For most popular subjects, a simple text matching search that is restricted to Web page titles performs admirably when PageRank prioritizes the results.)</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="2.1.1">2.1.1. Description of PageRank calculation</a></b></h5>
+          </h6>
+          <p>academic quotation literature has been carried out to the web, largely by using counting citations or back links to a given page. This offers a few approximation of a page’s significance or first-class. PageRank extends this concept by way of not counting links from all pages equally, and by using normalizing with the aid of the variety of hyperlinks on a web page. PageRank is defined as follows:</br></br><i> PageRank extends this idea by not counting links from all pages equally, and by normalizing by the number of links on a page.
+          We assume page A has pages TI...Tn bt*hich point to it (i.e., are citations). The parameter d is N damping facotr which can be set between 0 and 1. We usually Set d to 0.85. There are more details about d in the next section. Also C(A) is defined as the number of links going out of page A. The PageRank of u page A is given as,follows:
+          <pre>PR(A) = (I -d)+d(PR(TI)/C(Tl)+....+PR(Tn)/ C(Tn)</pre>Note that the PageRanks form a probability distribution over Web pages, so the sum of all Web pages’ PageRanks will be one.</i> </br> PageRank or PR(A) can be calculated using a simple iterative algorithm, and corresponds to the principal eigenvector of the normalized link matrix of the Web. Also. a PageRank for 26 million Web pages can be computed in a few hours on a medium size workstation. There are many other details which are beyond the scope of this paper. </p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="2.1.2">2.1.2. lntuitive justification</a></b></h5>
+          <p>PageRank can be idea of as a model of user conduct. We count on there's a “random surfer” who's given a web page at random and continues clicking on hyperlinks. never hitting “back” but in the end gets bored and starts offevolved on another random page. The possibility that the random surfer visits a page is its PageRank. And, the d damping factor is the opportunity at every web page the “random surfer” will become bored and request every other random page. One critical variation is to most effective upload the damping thing d to a single web page, or a group of pages. This lets in for customization and can make it nearly not possible to deliberately lie to the system with the intention to get a better ranking. we've got numerous different extensions to PageRank, once more see [7]. any other intuitive justification is that a page will have a excessive PageRank if there are numerous pages that factor to it. or if there are a few pages that point to it and feature a excessive PageRank. Intuitively, pages that are nicely stated from many places across the web are really worth looking at. also, pages which have possibly simplest one citation from something just like the Yahoo! homepage also are typically worth searching at. If a page turned into no longer excessive first-class, or turned into a damaged link, it is quite probably that Yahoo’s homepage would no longer hyperlink to it. PageRank handles each these cases and the whole thing in between by way of recursively propagating weights through the hyperlink structure of the internet.
+          </p><hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="2.2">2.2 Anchor- test</a> </b></h4>
+        
+          <p>The text of hyperlinks is treated in a unique manner in our search engine. most search engines partner the text of a hyperlink with the web page that the hyperlink is on. further, we accomplice it with the web page the hyperlink points to. This has several blessings. First, anchors frequently provide extra accurate descriptions of web pages than the pages themselves. 2d, anchors can also exist for files which can not be indexed via a textual content-based search engine, inclusive of pictures, packages. and databases. This makes it feasible to return net pages that have now not sincerely been crawled. notice that pages which have no longer been crawled can reason issues. on the grounds that they're in no way checked for validity before being back to the person. In this case, the hunt engine may even go back a page that by no means really existed, but had hyperlinks pointing to it. but, it's miles viable to kind the effects, so that this precise trouble rarely takes place. This concept of propagating anchor textual content to the page it refers to turned into applied inside the world huge web trojan horse mainly because it facilitates search non-text data, and expands the search insurance with fewer downloaded documents. We use anchor propagation generally due to the fact anchor textual content can help provide higher great outcomes. using anchor text effectively is technically difficult because of the big quantities of records which have to be processed. In our modern move slowly of 24 million pages. we had over 259 million anchors which we listed.</p>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="2.3">2.3 Other Features</a></b></h4>
+        
+          <p>Aside from PageRank and the use of anchor text, Google has several other features. First, it has location information for all hits and so it makes extensive use of proximity in search. Second, Google keeps track of some visual presentation details such as font size of words. Words in a larger or bolder font are weighted higher than other words. Third, full raw HTML of pages is available in a repository.</p>
+          <a href="#content">>> TOP</a>
+          <br><br>
+        </div>
+
+      </div>
+      <!-- related work-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="Related Work">3 related work</a></h3>
+        </div>
+        <div class="w3-container">        
+          <p>seek studies on the internet has a brief and concise history. the sector extensive internet malicious program (WWWW) [McBryan 94] changed into one of the first internet search engines like google and yahoo. It changed into eventually accompanied by means of several other educational search engines like google and yahoo, many of which can be now public organizations. compared to the growth of the net and the importance of search engines like google and yahoo there are valuable few files approximately latest engines like google [Pinkerton 94]. consistent with Michael Mauldin (leader scientist, Lycos Inc) [Mauldin], "the various offerings (consisting of Lycos) carefully guard the information of those databases". but, there was a truthful amount of labor on precise functions of engines like google. particularly properly represented is paintings that may get results by way of publish-processing the effects of current industrial serps, or produce small scale "individualized" serps. subsequently, there was a whole lot of research on facts retrieval systems, mainly on properly controlled collections. within the subsequent two sections, we talk some areas where this studies needs to be prolonged to work higher on the net.
+          three.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="3.1">3.1 facts Retrieval(Information retrieval)</a></b></h4>
+          <p>work in information retrieval systems goes again many years and is nicely evolved [Witten 94]. however, maximum of the research on records retrieval systems is on small nicely managed homogeneous collections such as collections of clinical papers or news tales on a related topic. certainly, the primary benchmark for records retrieval, the text Retrieval conference [TREC 96], uses a fairly small, properly controlled collection for his or her benchmarks. The "Very massive Corpus" benchmark is best 20GB compared to the 147GB from our move slowly of 24 million internet pages. things that paintings nicely on TREC regularly do now not produce top effects at the internet. for instance, the same old vector area version tries to return the report that maximum closely approximates the question, given that both query and report are vectors described by means of their phrase occurrence. on the web, this method frequently returns very short documents which can be the question plus a few words. for example, we've visible a primary search engine go back a web page containing best "invoice Clinton Sucks" and photo from a "invoice Clinton" query. a few argue that on the web, users must specify greater as it should be what they need and add more phrases to their query. We disagree vehemently with this function. If a user issues a question like "bill Clinton" they should get affordable outcomes on the grounds that there's a full-size amount of high pleasant facts available in this topic. Given examples like these, we agree with that the same old facts retrieval work wishes to be extended to deal efficaciously with the web.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="3.2">3.2 differences between the internet and properly managed Collections</a></b></h4>
+        
+          <p>The internet is a extensive series of absolutely uncontrolled heterogeneous documents. documents at the internet have extreme version inner to the documents, and additionally within the external meta facts that might be available. as an example, files fluctuate internally in their language (both human and programming), vocabulary (e mail addresses, links, zip codes, phone numbers, product numbers), type or layout (text, HTML, PDF, pics, sounds), and can even be system generated (log documents or output from a database). alternatively, we outline external meta facts as information that may be inferred approximately a record, but isn't contained inside it. Examples of outside meta information include such things as reputation of the supply, replace frequency, first-rate, recognition or usage, and citations. not most effective are the possible assets of outside meta data varied, but the things that are being measured range many orders of value as nicely. as an instance, compare the usage records from a major homepage, like Yahoo's which presently receives millions of page perspectives every day with an difficult to understand historical article which may get hold of one view each ten years. honestly, hose two objects must be handled very otherwise by way of a seek engine.every other huge distinction among the internet and traditional properly managed collections is that there's truly no manage over what people can put on the net. Couple this adaptability to submit something with the giant have an impact on of search engines to route visitors and agencies which intentionally manipulating engines like google for income turn out to be a extreme trouble. This trouble that has no longer been addressed in traditional closed facts retrieval systems. additionally, it's far exciting to observe that metadata efforts have in large part failed with net serps, because any text on the page which is not without delay represented to the consumer is abused to govern engines like google. There are even numerous organizations which focus on manipulating search engines for income.</p>
+          <a href="#content">>> TOP</a><br><br>
+        </div>
+      </div>
+      <!-- system atamony -->
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="System Anatomy">4. System anatomy </a></h3>
+        </div>
+        <div class="w3-container">
+        
+          <p>First, we are able to offer a high degree discussion of the structure. Then, there is some in-depth descriptions of vital information systems. finally, the main packages: crawling, indexing, and searching may be tested in depth.
+          </p><hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="4.1">4.1 google architecture overview</a></b></h4>
+        
+          <p>on this segment, we are able to deliver a high level evaluation of the way the entire device works as pictured in figure 1. further sections will discuss the packages and data structures no longer noted on this section. most of Google is carried out in C or C++ for performance and may run in either Solaris or Linux.<br>In Google, the net crawling (downloading of web pages) is achieved via numerous disbursed crawlers. there is a URLserver that sends lists of URLs to be fetched to the crawlers. The internet pages which can be fetched are then sent to the storeserver. The storeserver then compresses and shops the internet pages into a repository. every net web page has an related id number referred to as a docID which is assigned each time a new URL is parsed out of a web web page. The indexing characteristic is achieved through the indexer and the sorter. The indexer plays some of functions. It reads the repository, uncompresses the documents, and parses them. every document is converted into a fixed of word occurrences referred to as hits. The hits document the word, position in document, an approximation of font length, and capitalization. The indexer distributes those hits into a fixed of "barrels", developing a partially sorted ahead index. The indexer performs another vital function. It parses out all of the links in each internet page and stores critical statistics about them in an anchors report. This record consists of enough facts to determine wherein every link points from and to, and the textual content of the hyperlink.<br>The URLresolver reads the anchors file and converts relative URLs into absolute URLs and in grow to be docIDs. It places the anchor textual content into the forward index, related to the docID that the anchor points to. It additionally generates a database of hyperlinks that are pairs of docIDs. The hyperlinks database is used to compute PageRanks for all of the files.<br>The sorter takes the barrels, which might be looked after by using docID (that is a simplification, see section four.2.5), and resorts them through wordID to generate the inverted index. that is executed in vicinity in order that little brief area is needed for this operation. The sorter also produces a list of wordIDs and offsets into the inverted index. A program called DumpLexicon takes this listing collectively with the lexicon produced through the indexer and generates a new lexicon to be used by the searcher. The searcher is administered by an internet server and makes use of the lexicon constructed via DumpLexicon together with the inverted index and the PageRanks to reply queries.</p>
+          <img src="http://infolab.stanford.edu/~backrub/over.gif" width="50%" alt="High Level Google Architecture"><br>
+          <i>Figure 1. High Level Google Architecture</i>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="4.2">4.2 Major Data Structure</a></b></h4>
+        
+          <p>Google's records systems are optimized so that a huge report series can be crawled, listed, and searched with little value. despite the fact that, CPUs and bulk enter output rates have progressed dramatically through the years, a disk are looking for nevertheless calls for about 10 ms to finish. Google is designed to keep away from disk seeks on every occasion feasible, and this has had a giant have an impact on on the design of the facts structures.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.2.1">4.2.1 BigFiles</a></b></h5>
+        
+          <p>BigFiles are virtual documents spanning more than one report structures and are addressable by sixty four bit integers. The allocation among more than one file systems is dealt with robotically. The BigFiles package additionally handles allocation and deallocation of record descriptors, because the running structures do no longer provide enough for our desires. BigFiles additionally guide rudimentary compression options.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.2.2">4.2.2 Repository</a></b></h5>
+        
+          <p>The repository contains the entire HTML of each net page. each web page is compressed using zlib (see RFC1950). the choice of compression approach is a tradeoff among speed and compression ratio. We selected zlib's speed over a great improvement in compression presented with the aid of bzip. The compression price of bzip changed into about four to at least one on the repository in comparison to zlib's three to one compression. within the repository, the files are saved one after the opposite and are prefixed via docID, period, and URL as may be seen in Figure 2. The repository calls for no other information structures for use a good way to get entry to it. This facilitates with information consistency and makes development tons simpler; we will rebuild all the different information systems from simplest the repository and a file which lists crawler mistakes.</p>
+          <img src="http://infolab.stanford.edu/~backrub/repos.gif" width="50%" alt="Repository Data Structure"><br>
+          <i>Figure 2. Repository Data Structure</i>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.2.3">4.2.3 Document Index/report index</a></b></h5>
+        
+          <p>The file index continues information approximately each document. it's miles a set width ISAM (Index sequential access mode) index, ordered with the aid of docID. The records saved in each access consists of the cutting-edge file reputation, a pointer into the repository, a report checksum, and diverse records. If the file has been crawled, it also includes a pointer into a variable width document called docinfo which contains its URL and identify. in any other case the pointer factors into the URLlist which contains simply the URL. This layout selection become driven through the preference to have a fairly compact records shape, and the capacity to fetch a document in one disk are searching for for the duration of a search additionally, there may be a record which is used to convert URLs into docIDs. it's miles a list of URL checksums with their corresponding docIDs and is looked after via checksum. on the way to find the docID of a particular URL, the URL's checksum is computed and a binary seek is finished at the checksums document to find its docID. URLs can be converted into docIDs in batch by doing a merge with this file. that is the technique the URLresolver uses to turn URLs into docIDs. This batch mode of replace is essential because otherwise we need to carry out one seek for each hyperlink which assuming one disk might take extra than a month for our 322 million link dataset.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.2.4">4.2.4 Lexicon</a></b></h5>
+        
+          <p>The lexicon has numerous unique paperwork. One crucial change from in advance systems is that the lexicon can match in reminiscence for an affordable rate. in the present day implementation we are able to preserve the lexicon in memory on a gadget with 256 MB of main memory. The cutting-edge lexicon incorporates 14 million words (although a few rare phrases have been not brought to the lexicon). it's far carried out in two parts -- a list of the phrases (concatenated together but separated by nulls) and a hash table of guidelines. For numerous functions, the listing of words has a few auxiliary records that's beyond the scope of this paper to provide an explanation for absolutely.
+        </p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.2.5">4.2.5 Hit Lists</a></b></h5>
+        
+          <p>a success listing corresponds to a list of occurrences of a selected phrase in a specific record consisting of position, font, and capitalization facts. Hit lists account for most of the gap utilized in each the ahead and the inverted indices. because of this, it's far important to symbolize them as effectively as feasible. We considered several alternatives for encoding function, font, and capitalization -- easy encoding (a triple of integers), a compact encoding (a hand optimized allocation of bits), and Huffman coding. in the long run we chose a hand optimized compact encoding since it required a long way much less space than the easy encoding and some distance much less bit manipulation than Huffman coding. The information of the hits are shown in discern three.<br>Our compact encoding makes use of bytes for each hit. There are styles of hits: fancy hits and undeniable hits. Fancy hits include hits happening in a URL, name, anchor textual content, or meta tag. plain hits encompass everything else. A plain hit consists of a capitalization bit, font length, and 12 bits of word role in a file (all positions better than 4095 are classified 4096). Font size is represented relative to the relaxation of the document using 3 bits (only 7 values are without a doubt used due to the fact 111 is the flag that indicators a flowery hit). a flowery hit includes a capitalization bit, the font length set to 7 to signify it is a elaborate hit, four bits to encode the form of fancy hit, and 8 bits of role. For anchor hits, the 8 bits of function are split into four bits for function in anchor and four bits for a hash of the docID the anchor happens in. This offers us a few restricted word searching so long as there aren't that many anchors for a particular word. We assume to update the manner that anchor hits are saved to allow for more decision within the position and docIDhash fields. We use font size relative to the rest of the file due to the fact while searching, you do now not want to rank otherwise identical documents in another way simply because one of the documents is in a bigger font.
+          <br>figure 3. forward and reverse Indexes and the Lexicon http://infolab.stanford.edu/~backrub/barrels.gif
+          <br>The period of a success list is stored before the hits themselves. To keep space, the duration of the hit list is mixed with the wordID inside the forward index and the docID inside the inverted index. this boundaries it to eight and 5 bits respectively (there are some tricks which allow eight bits to be borrowed from the wordID). If the duration is longer than might match in that many bits, an escape code is utilized in the ones bits, and the subsequent bytes comprise the real length.</p>
+          <img src="http://infolab.stanford.edu/~backrub/barrels.gif" width="50%" alt="Forward and Reverse Indexes and the Lexicon"><br>
+          <i>Forward and Reverse Indexes and the Lexicon</i>
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.2.6">4.2.6 forward Index</a></b></h5>
+        
+          <p>The forward index is certainly already in part taken care of. it's far saved in some of barrels (we used sixty four). every barrel holds a number of wordID's. If a record incorporates phrases that fall into a specific barrel, the docID is recorded into the barrel, accompanied via a list of wordID's with hitlists which correspond to the ones words. This scheme calls for barely extra storage due to duplicated docIDs however the distinction is very small for a reasonable range of buckets and saves considerable time and coding complexity in the very last indexing phase completed by way of the sorter. moreover, rather than storing real wordID's, we save every wordID as a relative difference from the minimum wordID that falls into the barrel the wordID is in. This way, we will use simply 24 bits for the wordID's in the unsorted barrels, leaving eight bits for the hit listing duration.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.2.7">4.2.7 Inverted Index</a></b></h5>
+        
+          <p>The inverted index includes the same barrels as the forward index, besides that they have been processed via the sorter. For each legitimate wordID, the lexicon consists of a pointer into the barrel that wordID falls into. It points to a doclist of docID's collectively with their corresponding hit lists. This doclist represents all of the occurrences of that word in all files.An vital trouble is in what order the docID's need to appear in the doclist. One easy answer is to shop them looked after by means of docID. This lets in for brief merging of various doclists for a couple of phrase queries. every other alternative is to save them taken care of by means of a rating of the occurrence of the phrase in every record. This makes answering one phrase queries trivial and makes it likely that the answers to multiple word queries are near the start. but, merging is a lot extra tough. additionally, this makes development much greater tough in that a exchange to the ranking function requires a rebuild of the index. We selected a compromise between these alternatives, preserving sets of inverted barrels -- one set for hit lists which encompass title or anchor hits and any other set for all hit lists. This manner, we take a look at the first set of barrels first and if there are not enough suits within those barrels we take a look at the bigger ones.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="4.3">4.3 Crawling the Web</a> </b></h4>
+        
+          <p>strolling an internet crawler is a challenging mission. There are problematic overall performance and reliability issues and even more importantly, there are social problems. Crawling is the maximum fragile software since it includes interacting with hundreds of heaps of net servers and diverse call servers which can be all past the manage of the system.<br>so that you can scale to hundreds of tens of millions of web pages, Google has a quick distributed crawling device. A unmarried URLserver serves lists of URLs to some of crawlers (we commonly ran about 3). each the URLserver and the crawlers are applied in Python. every crawler continues more or less three hundred connections open without delay. this is important to retrieve internet pages at a fast enough pace. At top speeds, the machine can move slowly over 100 net pages in line with second the usage of four crawlers. This amounts to kind of 600K in keeping with second of records. a major performance stress is DNS lookup. each crawler continues a its very own DNS cache so it does not want to do a DNS lookup earlier than crawling every document. each of the masses of connections may be in some of distinctive states: looking up DNS, connecting to host, sending request, and receiving response. those elements make the crawler a complicated aspect of the device. It uses asynchronous IO to control activities, and a number of queues to transport page fetches from state to nation.<br>It turns out that going for walks a crawler which connects to greater than 1/2 a million servers, and generates tens of thousands and thousands of log entries generates a truthful quantity of e-mail and call calls. due to the widespread number of humans coming on line, there are constantly folks who do now not recognize what a crawler is, because this is the primary one they have got visible. nearly day by day, we get hold of an e mail some thing like, "Wow, you checked out a variety of pages from my net website. How did you want it?" There are also some folks that do now not realize about the robots exclusion protocol, and think their web page have to be covered from indexing with the aid of a announcement like, "This web page is copyrighted and should not be listed", which needless to mention is hard for web crawlers to recognize. also, because of the big amount of information concerned, unexpected matters will show up. for instance, our device tried to move slowly an internet recreation. This ended in plenty of rubbish messages within the middle in their game! It turns out this was an smooth problem to restore. however this trouble had no longer come up until we had downloaded tens of tens of millions of pages. due to the tremendous variant in web pages and servers, it's far absolutely impossible to check a crawler without jogging it on large a part of the internet. forever, there are hundreds of difficult to understand troubles which may also handiest occur on one page out of the entire web and purpose the crawler to crash, or worse, purpose unpredictable or wrong conduct. systems which get right of entry to massive elements of the net want to be designed to be very robust and thoroughly tested. for the reason that big complex structures together with crawlers will continually purpose troubles, there wishes to be enormous resources dedicated to analyzing the e-mail and solving these issues as they come up.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="4.4">4.4 Indexing the web</a></b></h4>
+        <ol>
+          <li>Parsing </li>
+          <p>Any parser that's designed to run at the entire internet should deal with a massive array of feasible errors. these range from typos in HTML tags to kilobytes of zeros within the middle of a tag, non-ASCII characters, HTML tags nested loads deep, and a great variety of other errors that undertaking anybody's creativeness to come up with similarly creative ones. for max velocity, in place of using YACC to generate a CFG parser, we use flex to generate a lexical analyzer which we outfit with its very own stack. developing this parser which runs at an affordable velocity and may be very strong concerned a truthful quantity of labor.</p>
+          <li>Indexing documents into Barrels</li>
+          <p>After each record is parsed, it's far encoded into some of barrels. each word is converted into a wordID by means of the use of an in-reminiscence hash table -- the lexicon. New additions to the lexicon hash table are logged to a document. once the words are converted into wordID's, their occurrences in the cutting-edge file are translated into hit lists and are written into the ahead barrels. the principle issue with parallelization of the indexing section is that the lexicon needs to be shared. as opposed to sharing the lexicon, we took the method of writing a log of all of the more words that have been now not in a base lexicon, which we fixed at 14 million words. That way multiple indexers can run in parallel and then the small log file of more phrases may be processed through one very last indexer.</p>
+          <li>Sorting</li>
+          <p>for you to generate the inverted index, the sorter takes every of the forward barrels and kinds it by way of wordID to supply an inverted barrel for identify and anchor hits and a full textual content inverted barrel. This technique happens one barrel at a time, as a result requiring little temporary storage. also, we parallelize the sorting phase to apply as many machines as we've got sincerely through walking multiple sorters, that can process exceptional buckets at the identical time. because the barrels don't in shape into predominant memory, the sorter in addition subdivides them into baskets which</p>
+        </ol>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="4.5">4.5 searching</a></b></h4>
+        
+          <p>The goal of searching is to provide quality search results efficiently. Many of the large commercial search engines seemed to have made great progress in terms of efficiency. Therefore, we have focused more on quality of search in our research, although we believe our solutions are scalable to commercial volumes with a bit more effort. The google query evaluation process is show in List below
+          <br>
+          <table border="1">
+            <tr>
+              <td>
+                <ol>
+                  <li>Parse the query.</li>
+                  <li>Convert words into wordIDs.</li>
+                  <li>Seek to the start of the doclist in the short barrel for every word.</li>
+                  <li>Scan through the doclists until there is a document that matches all the search terms.</li>
+                  <li>Compute the rank of that document for the query.</li>
+                  <li>If we are in the short barrels and at the end of any doclist, seek to the start of the doclist in the full barrel for every word and go to step 4.</li>
+                  <li>if we are not at the end of any doclist go to step 4.</li><br>
+            Sort the documents that have matched by rank and return the top k.
+          </ol>
+              </td>
+            </tr>
+          
+          </table>
+          <br>
+
+          To put a limit on response time, once a certain number (currently 40,000) of matching documents are found, the searcher automatically goes to step 8 in above list. This means that it is possible that sub-optimal results would be returned. We are currently investigating other ways to solve this problem. In the past, we sorted the hits according to PageRank, which seemed to improve the situation.
+          </p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.5.1">4.5.1 The Ranking System</a></b></h5>
+        
+          <p>Google keeps an awful lot extra records approximately net documents than regular search engines like google and yahoo. each hitlist consists of role, font, and capitalization facts. additionally, we thing in hits from anchor textual content and the PageRank of the report. Combining all of this statistics into a rank is difficult. We designed our ranking feature in order that no precise component may have an excessive amount of affect. First, keep in mind the most effective case -- a unmarried word query. so that it will rank a document with a single word question, Google seems at that record's hit list for that phrase. Google considers every hit to be considered one of several different types (identify, anchor, URL, undeniable textual content large font, undeniable textual content small font, ...), every of which has its own type-weight. the type-weights make up a vector listed by way of type. Google counts the variety of hits of every type in the hit listing. Then every matter is converted right into a count-weight. depend-weights growth linearly with counts at first but speedy taper off so that extra than a positive count will no longer help. We take the dot product of the vector of count number-weights with the vector of kind-weights to compute an IR score for the file. eventually, the IR rating is combined with PageRank to give a very last rank to the document.<br>For a multi-word search, the situation is extra complicated. Now multiple hit lists have to be scanned through right away so that hits going on close together in a record are weighted better than hits occurring a long way apart. The hits from the more than one hit lists are matched up in order that close by hits are matched collectively. For every matched set of hits, a proximity is computed. The proximity is based on how some distance aside the hits are in the file (or anchor) however is classed into 10 exclusive cost "containers" starting from a phrase suit to "not even close". Counts are computed not most effective for every type of hit however for every type and proximity. every type and proximity pair has a type-prox-weight. The counts are converted into remember-weights and we take the dot product of the depend-weights and the type-prox-weights to compute an IR rating. All of these numbers and matrices can all be displayed with the quest results the use of a unique debug mode. these displays had been very useful in growing the rating machine.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="4.5.2">4.5.2 remarks/feedbacks</a></b></h5>
+        
+          <p>The rating feature has many parameters like the type-weights and the sort-prox-weights. identifying the right values for those parameters is something of a black artwork. which will do that, we've got a user feedback mechanism within the search engine. A relied on user may additionally optionally examine all of the outcomes which might be again. This comments is saved. Then when we alter the rating fun</p>
+          <a href="#content">>> TOP</a><br><br>
+        </div>
+      </div>
+      <!--result and performance-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="Result and Performance">5 result and performance</a></h3>
+        </div>
+        <div class="w3-container">
+          <p>The maximum crucial measure of a seek engine is the great of its seek results. even as a complete person assessment is beyond the scope of this paper, our personal enjoy with Google has shown it to produce better consequences than the main industrial search engines for most searches. for example which illustrates the usage of PageRank, anchor textual content, and proximity, figure 4 shows Google's outcomes for a search on "bill clinton". those consequences demonstrates a number of Google's features. The outcomes are clustered by using server. This facilitates notably when sifting via result sets. some of results are from the whitehouse.gov domain which is what one may fairly anticipate from one of these search. presently, most main industrial serps do not go back any outcomes from whitehouse.gov, lots much less the proper ones. be aware that there may be no name for the first end result. that is as it became not crawled. as a substitute, Google depended on anchor text to determine this turned into a good solution to the question. in addition, the fifth end result is an e-mail cope with which, of route, is not crawlable. it's also a end result of anchor text.<br>all the results are reasonably high quality pages and, at remaining take a look at, none had been damaged hyperlinks. This is largely due to the fact they all have excessive PageRank. The PageRanks are the percentages in crimson at the side of bar graphs. subsequently, there are not any consequences about a bill aside from Clinton or about a Clinton aside from bill. this is because we region heavy importance on the proximity of phrase occurrences. Of route a real test of the best of a seek engine would contain an extensive user take a look at or effects evaluation which we do now not have room for right here. as an alternative, we invite the reader to attempt Google for themselves at <a href="http://google.stanford.edu.">google.stanford.edu.</a></p>
+          <table border="1" >
+            <tr>
+              <td style="padding: 2%">
+                
+                  <b>Query: bill clinton</b> 
+                  <pre>
+ <a href="http://www.whitehouse.gov/">http://www.whitehouse.gov/</a>  
+100.00%  (no date) (0K)   
+<a href="http://www.whitehouse.gov/">http://www.whitehouse.gov/</a> 
+      Office of the President   
+        99.67% (Dec 23 1996) (2K)    
+        <a href="http://www.whitehouse.gov/WH/EOP/OP/html/OP_Home.html">http://www.whitehouse.gov/WH/EOP/OP/html/OP_Home.html</a>  
+      Welcome To The White House   
+        99.98%  (Nov 09 1997) (5K)  
+        <a href="http://www.whitehouse.gov/WH/Welcome.html">http://www.whitehouse.gov/WH/Welcome.html</a>    
+      Send Electronic Mail to the President   
+        99.86%  (Jul 14 1997) (5K)    
+        <a href="http://www.whitehouse.gov/WH/Mail/html/Mail_President.html">http://www.whitehouse.gov/WH/Mail/html/Mail_President.html</a>   
+<a href="mailto:president@whitehouse.gov">mailto:president@whitehouse.gov</a>   
+99.98%    
+      <a href="mailto:President@whitehouse.gov">mailto:President@whitehouse.gov</a>   
+        99.27%    
+The "Unofficial" Bill Clinton    
+94.06% (Nov 11 1997) (14K)   
+<a href="http://zpub.com/un/un-bc.html">http://zpub.com/un/un-bc.html</a>   
+       Bill Clinton Meets The Shrinks    
+         86.27%  (Jun 29 1997) (63K)    
+         http://zpub.com/un/un-bc9.html   
+President Bill Clinton - The Dark Side   
+97.27%  (Nov 10 1997) (15K)   
+<a href="http://www.realchange.org/clinton.htm">http://www.realchange.org/clinton.htm</a>   
+$3 Bill Clinton   
+94.73%  (no date) (4K) <a href="http://www.gatewy.net/~tjohnson/clinton1.html">http://www.gatewy.net/~tjohnson/clinton1.html</a>  
+
+                </pre>
+              </td>
+            </tr>
+          </table><br>
+                Figure 4. Sample Results from Google
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="5.1">5.1 Storage requirements</a></b></h4>
+        
+          <p>other than seek satisfactory, Google is designed to scale cost effectively to the dimensions of the net as it grows. One element of that is to use storage efficiently. table 1 has a breakdown of a few records and storage necessities of Google. due to compression the whole length of the repository is ready fifty three GB, simply over one 1/3 of the overall information it stores. At modern-day disk fees this makes the repository a noticeably reasonably-priced supply of useful statistics. more importantly, the whole of all of the facts utilized by the search engine requires a similar quantity of storage, approximately fifty five GB. furthermore, maximum queries may be replied using simply the fast inverted index. With higher encoding and compression of the document Index, a high pleasant web seek engine may work onto a 7GB power of a brand new pc.</p>
+          <table border="1">
+            <tr>
+              <th colspan="2">Storage statistics</th>
+            </tr>
+            <tr>
+              <td>Toal Size if Fetched Pages</td>
+              <td>147.8 GB</td>
+            </tr>
+            <tr>
+              <td>Compressed Repository</td>
+              <td>53.5 GB</td>
+            </tr>
+            <tr>
+              <td>Short Inverted Index</td>
+              <td>4.1 GB</td>
+            </tr>
+            <tr>
+              <td>Full Inverted Index</td>
+              <td>37.2 GB</td>
+            </tr>
+            <tr>
+              <td>Lexicon</td>
+              <td>293 GB</td>
+            </tr>
+            <tr>
+              <td>Temporary Anchor Data(Not in total)</td>
+              <td>6.6 GB</td>
+            </tr>
+            <tr>
+              <td>Document Index Inc. variable Width Data</td>
+              <td>9.7 GB</td>
+            </tr>
+            <tr>
+              <th>Toal Withour Repository</th>
+              <th>55.2 GB</th>
+            </tr>
+            <tr>
+              <th>Toal With repository</th>
+              <tH>108.7 GB</th>
+            </tr>
+          </table><br>
+          <table border="1">
+            <tr>
+              <th colspan="2">Web Page statistics</th>
+            </tr>
+            <tr>
+              <td>Number of Web Pages Fetched</td>
+              <td>24 million</td>
+            </tr>
+            <tr>
+              <td>Number of Urls Seen</td>
+              <td>76.5 million</td>
+            </tr>
+            <tr>
+              <td>Number of email Adresses</td>
+              <td>1.7 million</td>
+            </tr>
+            <tr>
+              <td>Number of 404's</td>
+              <td>1.6 million</td>
+            </tr>
+          </table>
+          <i>Table 1 Statistics</i>
+
+          <hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="5.2">5.2 System performance</a></b></h4>
+        
+          <p>it is essential for a seek engine to crawl and index correctly. This way records can be stored updated and fundamental modifications to the gadget may be examined exceptionally fast. For Google, the major operations are Crawling, Indexing, and Sorting. it is difficult to degree how lengthy crawling took universal due to the fact disks stuffed up, name servers crashed, or any quantity of other issues which stopped the device. In overall it took more or less nine days to download the 26 million pages (including mistakes). however, as soon as the device changed into jogging easily, it ran a whole lot faster, downloading the final 11 million pages in just 63 hours, averaging simply over 4 million pages in step with day or forty eight.five pages per 2nd. We ran the indexer and the crawler concurrently. The indexer ran just faster than the crawlers. This is essentially because we spent just enough time optimizing the indexer in order that it might now not be a bottleneck. these optimizations included bulk updates to the document index and placement of critical data structures on the neighborhood disk. The indexer runs at kind of 54 pages according to 2d. The sorters can be run absolutely in parallel; the use of four machines, the complete manner of sorting takes approximately 24 hours.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h4 class="w3-opacity"><b><a name="5.3">5.3 Search performance</a></b></h4>
+        
+          <p>improving the overall performance of seek become not the important recognition of our studies up up to now. The contemporary model of Google solutions most queries in between 1 and 10 seconds. This time is more often than not dominated by means of disk IO over NFS (seeing that disks are unfold over some of machines). moreover, Google does now not have any optimizations which includes query caching, subindices on commonplace phrases, and other commonplace optimizations. We intend to speed up Google extensively via distribution and hardware, software program, and algorithmic improvements. Our target is so that you can cope with several hundred queries in line with second. table 2 has some pattern question times from the modern version of Google. they may be repeated to show the speedups resulting from cached IO.</p>
+
+          <table border="1">
+            <tr>
+              <th></th>
+              <th colspan="2">Inital Query</th>
+              <th colspan="2">Same Query Repeated (IO mostly cached</th>
+            </tr>
+            <tr>
+              <th>Query</th>
+              <th>CPU Times(s)</th>
+              <th>Total Times(s)</th>
+              <th>CPU Times(s)</th>
+              <th>Total Times(s)</th>
+            </tr>
+            <tr>
+              <td>al gore</td>
+              <td>0.09</td>
+              <td>2.13</td>
+              <td>0.06</td>
+              <td>0.06</td>
+            </tr>
+            <tr>
+              <td>vice president</td>
+              <td>1.77</td>
+              <td>3.84</td>
+              <td>1.66</td>
+              <td>1.80</td>
+            </tr>
+            <tr>
+              <td>hard disks</td>
+              <td>0.25</td>
+              <td>4.86</td>
+              <td>0.20</td>
+              <td>0.24</td>
+            </tr>
+            <tr>
+              <td>searech engines</td>
+              <td>1.31</td>
+              <td>9.63</td>
+              <td>1.16</td>
+              <td>1.16</td>
+            </tr>
+          </table>
+          <br>
+          <i>Table 2. Search Times</i><br>
+          <a href="#content">>> TOP</a><br><br>
+        </div>
+      </div>
+      <!--conclusion-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="Conclusion">6 Conclusion</a> </h3>
+        </div>
+        <div class="w3-container">
+          
+          <p>Google is designed to be a scalable seek engine. The primary goal is to offer high first-rate search effects over a swiftly developing international extensive internet. Google employs some of strategies to enhance seek fine which includes web page rank, anchor textual content, and proximity information. furthermore, Google is a complete architecture for collecting web pages, indexing them, and acting search queries over them</p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="6.1">6.1 Furute work</a></b></h5>
+        
+          <p>A large-scale net seek engine is a complicated gadget and lots remains to be done. Our instant dreams are to improve seek performance and to scale to approximately 100 million web pages. a few easy enhancements to efficiency consist of query caching, smart disk allocation, and subindices. another place which calls for a lot research is updates. We should have clever algorithms to decide what antique web pages should be recrawled and what new ones ought to be crawled. work in the direction of this intention has been finished in [Cho 98]. One promising region of studies is using proxy caches to build seek databases, since they're demand driven. we're planning to add easy features supported by using industrial serps like boolean operators, negation, and stemming. but, other features are simply beginning to be explored consisting of relevance feedback and clustering (Google presently supports a simple hostname primarily based clustering). We additionally plan to guide user context (like the person's vicinity), and result summarization. We also are running to increase the usage of link structure and hyperlink textual content. easy experiments indicate PageRank can be personalized by way of growing the load of a person's home page or bookmarks. As for link textual content, we are experimenting with using text surrounding hyperlinks further to the hyperlink textual content itself. a web seek engine is a very rich environment for research thoughts. we've got some distance too many to listing here so we do not anticipate this destiny paintings segment to emerge as plenty shorter in the near future.
+        </p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="6.2">6.2 High Quality Search</a></b></h5>
+        
+          <p>the biggest hassle dealing with customers of net search engines like google nowadays is the nice of the results they get again. whilst the results are frequently fun and enlarge users' horizons, they're often frustrating and devour precious time. for example, the pinnacle end result for a search for "invoice Clinton" on one of the most famous industrial search engines like google and yahoo became the invoice Clinton comic story of the Day: April 14, 1997. Google is designed to provide better first-rate seek in order the net continues to develop unexpectedly, facts may be observed effortlessly. which will accomplish this Google makes heavy use of hypertextual records along with hyperlink shape and link (anchor) text. Google also makes use of proximity and font data. while evaluation of a search engine is tough, we've subjectively determined that Google returns better excellent seek consequences than current commercial search engines. The analysis of hyperlink structure via PageRank lets in Google to assess the excellent of net pages. using link textual content as a description of what the hyperlink points to enables the hunt engine return applicable (and to a few diploma high high-quality) results. sooner or later, the use of proximity facts facilitates increase relevance a terrific deal for lots queries.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="6.3">6.3 Scalable Architecture</a></b></h5>
+        
+          <p>apart from the exceptional of search, Google is designed to scale. It need to be efficient in both area and time, and consistent elements are very important whilst dealing with the entire web. In implementing Google, we have seen bottlenecks in CPU, reminiscence get admission to, reminiscence potential, disk seeks, disk throughput, disk potential, and network IO. Google has evolved to conquer a number of these bottlenecks for the duration of numerous operations. Google's most important statistics systems make efficient use of to be had storage space. furthermore, the crawling, indexing, and sorting operations are green sufficient with a view to build an index of a great part of the net -- 24 million pages, in less than one week. We count on with the intention to construct an index of 100 million pages in less than a month.</p><hr>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b><a name="6.4">6.4 A research tools</a></b></h5>
+        
+          <p>in addition to being a high satisfactory search engine, Google is a studies device. The statistics Google has accrued has already resulted in many other papers submitted to meetings and plenty of more on the way. latest research together with [Abiteboul 97] has shown some of barriers to queries approximately the web that can be answered while not having the net to be had domestically. which means Google (or a similar gadget) is not handiest a treasured studies tool however a vital one for a huge variety of programs. we are hoping Google can be a aid for searchers and researchers everywhere in the international and could spark the following generation of seek engine era.</p>
+          <a href="#content">>> TOP</a><br><br>
+        </div>
+      </div>
+      <!--acknowledgement-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="Acknowledgemet">7 Acknowledgemet</a></h3>
+        </div>
+        <div class="w3-container">
+          <p>Scott Hassan and Alan Steremberg have been critical to the development of Google. Their talented contributions are irreplaceable, and the authors owe them much gratitude. We would also like to thank Hector Garcia-Molina, Rajeev Motwani, Jeff Ullman, and Terry Winograd and the whole WebBase group for their support and insightful discussions. Finally we would like to recognize the generous support of our equipment donors IBM, Intel, and Sun and our funders. The research described here was conducted as part of the Stanford Integrated Digital Library Project, supported by the National Science Foundation under Cooperative Agreement IRI-9411306. Funding for this cooperative agreement is also provided by DARPA and NASA, and by Interval Research, and the industrial partners of the Stanford Digital Libraries Project.</p><a href="#content">>> TOP</a><br><br>
+        </div>
+      </div>
+      <!--reference-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="Reference">8 Reference</a></h3>
+        </div>
+        <div class="w3-container">
+          <ul>
+            <li>Google Search Engine <a href="http://google.stanford.edu/">http://google.stanford.edu/</a></li>
+            <li>[Abiteboul 97] Serge Abiteboul and Victor Vianu, <i>Queries and Computation on the Web.</i> Proceedings of the International Conference on Database Theory. Delphi, Greece 1997.</li>
+
+            <li>[Bagdikian 97] Ben H. Bagdikian. <i>The Media Monopoly</i>. 5th Edition. Publisher: Beacon, ISBN: 0807061557</li>
+
+            <li>[Chakrabarti 98] S.Chakrabarti, B.Dom, D.Gibson, J.Kleinberg, P. Raghavan and S. Rajagopalan. <i>Automatic Resource Compilation by Analyzing Hyperlink Structure and Associated Text.</i> Seventh International Web Conference (WWW 98). Brisbane, Australia, April 14-18, 1998.</li>
+            <li>[Cho 98] Junghoo Cho, Hector Garcia-Molina, Lawrence Page. <i>Efficient Crawling Through URL Ordering.</i> Seventh International Web Conference (WWW 98). Brisbane, Australia, April 14-18, 1998.</li>
+            <li>[Gravano 94] Luis Gravano, Hector Garcia-Molina, and A. Tomasic.<i> The Effectiveness of GlOSS for the Text-Database Discovery Problem.</i> Proc. of the 1994 ACM SIGMOD International Conference On Management Of Data, 1994.</li>
+            <li>[Kleinberg 98] Jon Kleinberg, <i>Authoritative Sources in a Hyperlinked Environment,</i> Proc. ACM-SIAM Symposium on Discrete Algorithms, 1998.</li>
+            <li>[Marchiori 97] Massimo Marchiori. <i>The Quest for Correct Information on the Web: Hyper Search Engines.</i> The Sixth International WWW Conference (WWW 97). Santa Clara, USA, April 7-11, 1997.</li>
+
+            <li>[McBryan 94] Oliver A. McBryan. GENVL and WWWW: <i>Tools for Taming the Web. First International Conference on the World Wide Web.</i> CERN, Geneva (Switzerland), May 25-26-27 1994. <a href="http://www.cs.colorado.edu/home/mcbryan/mypapers/www94.ps">http://www.cs.colorado.edu/home/mcbryan/mypapers/www94.ps</a></li>
+            <li>[Page 98] Lawrence Page, Sergey Brin, Rajeev Motwani, Terry Winograd. <i>The PageRank Citation Ranking: Bringing Order to the Web.</i> Manuscript in progress. <a href="http://google.stanford.edu/~backrub/pageranksub.ps">http://google.stanford.edu/~backrub/pageranksub.ps</a></li>
+            <li>[Pinkerton 94] Brian Pinkerton, <i>Finding What People Want: Experiences with the WebCrawler.</i> The Second International WWW Conference Chicago, USA, October 17-20, 1994.<a href="http://info.webcrawler.com/bp/WWW94.html"> http://info.webcrawler.com/bp/WWW94.html</a></li>
+            <li>[Spertus 97] Ellen Spertus. <i>ParaSite: Mining Structural Information on the Web.</i> The Sixth International WWW Conference (WWW 97). Santa Clara, USA, April 7-11, 1997.</li>
+            <li>[TREC 96] <i>Proceedings of the fifth Text REtrieval Conference</i> (TREC-5). Gaithersburg, Maryland, November 20-22, 1996. Publisher: Department of Commerce, National Institute of Standards and Technology. Editors: D. K. Harman and E. M. Voorhees. Full text at: <a href="http://trec.nist.gov/">http://trec.nist.gov/</a></li>
+            <li>[Witten 94] Ian H Witten, Alistair Moffat, and Timothy C. Bell.<i> Managing Gigabytes: Compressing and Indexing Documents and Images.</i> New York: Van Nostrand Reinhold, 1994.</li>
+            <li>[Weiss 96] Ron Weiss, Bienvenido Velez, Mark A. Sheldon, Chanathip Manprempre, Peter Szilagyi, Andrzej Duda, and David K. Gifford. <i>HyPursuit: A Hierarchical Network Search Engine that Exploits Content-Link Hypertext Clustering.</i> Proceedings of the 7th ACM Conference on Hypertext. New York, 1996.</li>
+
+          </ul>
+          <a href="#content">>> TOP</a><br><br>
+        </div>
+      </div>
+      <!--author detials-->
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i><a name="Vitae">Vitae</a></a></h3>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>Serget Brin</b></h5>
+        
+          <table>
+            <tr>
+              <td width="20%"><img src="http://infolab.stanford.edu/~backrub/sergey.jpg" width="70%" alt="Sergey Brin"></td>
+              <td><b>Sergey Brin</b> received his B.S. degree in mathematics and computer science from the University of Maryland at College Park in 1993. Currently, he is a Ph.D. candidate in computer science at Stanford University where he received his M.S. in 1995. He is a recipient of a National Science Foundation Graduate Fellowship. His research interests include search engines, information extraction from unstructured sources, and data mining of large text collections and scientific data.</td>
+            </tr>
+            <tr>
+              <td><img src="http://infolab.stanford.edu/~backrub/larry.jpg" width="70%" alt="Lawrence Page"></td>
+              <td><b>Lawrence Page</b> was born in East Lansing, Michigan, and received a B.S.E. in Computer Engineering at the University of Michigan Ann Arbor in 1995. He is currently a Ph.D. candidate in Computer Science at Stanford University. Some of his research interests include the link structure of the web, human computer interaction, search engines, scalability of information access interfaces, and personal data mining.</p></td>
+            </tr>
+          </table><br>
+          <a href="#content">>> TOP</a><br><br>
+      </div>
+     
+    <!-- End Right Column -->
+    </div>
+    
+  <!-- End Grid -->
+  </div>
+  
+  <!-- End Page Container -->
+</div>
+
+<footer class="w3-container w3-teal w3-center w3-margin-top" >
+  <p>Find me on social media.</p>
+  <p>
+  <i class="fa fa-facebook-official w3-hover-opacity">&nbsp;Sonam Tshering</i>&nbsp;
+  <i class="fa fa-instagram w3-hover-opacity">&nbsp;sonam_victrious</i>&nbsp;
+  <i class="fa fa-twitter w3-hover-opacity">&nbsp;sonamts31046832</i>
+  </p>
+  
+</footer>
+
+</body>
+</html>
+
+
+<!--
+
+      <div class="w3-container w3-card w3-white w3-margin-bottom" >
+        <div class="w3-container">
+          <h3 class="w3-text-grey w3-padding-16"><i class="fa fa-certificate fa-fw w3-margin-right w3-xxlarge w3-text-teal"></i>2. System features </h3>
+        </div>
+        <div class="w3-container">
+          <h5 class="w3-opacity"><b>xxxx</b></h5>
+        
+          <p>xxxxxx</p><hr>
+        </div>
+      </div>
+
+        -->
